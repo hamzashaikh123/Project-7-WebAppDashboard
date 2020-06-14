@@ -122,3 +122,25 @@ const alertBar=document.getElementsByClassName("alert")[0];
 alertClose.addEventListener('click',()=>{
     alertBar.style.display="none";
 });
+
+
+//determine if user message is properly included//
+const messageBox= document.getElementById("user-message");
+const userField=document.getElementById("search-input");
+const submitButton = document.getElementsByClassName("send-button")[0];
+
+submitButton.addEventListener("click",()=>{
+    if (userField.value=="" || messageBox.value==""){
+        alert("Please add all required information (user and message).");
+    }
+    else {
+        alert("Thank you for sending in your message!");
+        messageBox.value="Message has been sent.";
+        userField.value="";
+        messageBox.style.backgroundColor='#b5b5b5';
+        userField.style.backgroundColor='#b5b5b5';
+        messageBox.disabled=true;
+        userField.disabled=true;
+    }  
+     
+});
