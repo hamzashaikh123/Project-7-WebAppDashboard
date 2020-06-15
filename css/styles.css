@@ -34,7 +34,7 @@
 .mobile-users{
     border-left: 1px solid lightgrey;
 }
-#last-activity-member{
+.last-activity-member{
     border:none;
 }
 
@@ -425,6 +425,7 @@ border-radius: 50%;
 }
 .settings{
     border-left:1px solid grey;
+    width: 100%;
 }
 
 @media (min-width:768px){
@@ -468,6 +469,7 @@ border-radius: 50%;
     }
     .button-container{
         margin:0 1rem;
+        width: 100%;
     }
 
     #user-name{
