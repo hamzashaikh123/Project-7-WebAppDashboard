@@ -1,4 +1,35 @@
 // CHART STYLING ---------------------
+const chartData=
+{
+    labels:["16-22","23-29","30-5","6-12","13-19","20-26","27-3","4-10"],
+    points:
+        [[1000, 200, 450, 389, 239, 150, 489, 500],
+        [500, 850, 2050, 250, 1500, 300, 2100, 1000],
+        [384, 291, 150, 989, 138, 500, 643, 123],
+        [234, 525, 657, 135, 160, 100, 900, 590]
+    ]
+};
+
+let trafficSetting=document.getElementsByClassName("activated")[0].textContent;
+
+function chartLayout(){
+    for(let x=0; x<chartData.length; x+=1){
+        trafficSetting=document.getElementsByClassName("activated")[0].textContent;
+        if (chartData[x][0]===trafficSetting){
+            return(chartData[x][1]);
+        }
+    }
+};
+
+function addData(chart, data) {
+    chart.data.datasets.data = [];
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data = data;
+    });
+    chart.update();
+}
+
+
 const buttonsList = document.getElementsByClassName("traffic-nav");
 for(let x = 0; x<buttonsList.length; x+=1){
     buttonsList[x].addEventListener('click',()=>{
@@ -8,26 +39,12 @@ for(let x = 0; x<buttonsList.length; x+=1){
             }
         }
         buttonsList[x].classList.toggle('activated');
+        addData(trafficChart, chartData.points[x]);
+
     });
 }
 
-let trafficSetting=document.getElementsByClassName("activated")[0].textContent;
 
-const chartData= [
-                ['Daily',[1000, 200, 450, 389, 239, 150, 489, 500]],
-                ['Hourly',[500, 850, 2050, 250, 1500, 300, 2100, 1000]],
-                ['Weekly',[384, 291, 150, 989, 138, 500, 643, 123]],
-                ['Monthly',[234, 525, 657, 135, 160, 100, 900, 590]]
-];
-
-function chartLayout(trafficSetting){
-    for(let x=0; x<chartData.length; x+=1){
-        if (chartData[x][0]===trafficSetting){
-            alert(chartData[x][1]);
-        }
-    }
-};
-chartLayout();
 
 //CHART DATA ------------------------------------------------------------
 const lineChart = document.getElementById('lineChart').getContext('2d');
@@ -37,9 +54,9 @@ const trafficChart = new Chart(lineChart, {
 
     // The data for our dataset
     data:  {
-         labels: ["16-22","23-29","30-5","6-12","13-19","20-26","27-3","4-10"],
+         labels: chartData.labels,
     datasets: [{
-        data: [500, 850, 2050, 250, 1500, 300, 2100, 1000],
+        data: chartData.points[0],
         backgroundColor: 'rgba(116, 119, 191, .5)',
         borderColor: '#A9ACE5',
         borderWidth: 2,
@@ -191,4 +208,5 @@ window.onclick =function(event){
     }
 }
 
-
+//autocomplete
+ 
