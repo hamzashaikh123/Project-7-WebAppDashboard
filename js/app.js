@@ -1,3 +1,34 @@
+// CHART STYLING ---------------------
+const buttonsList = document.getElementsByClassName("traffic-nav");
+for(let x = 0; x<buttonsList.length; x+=1){
+    buttonsList[x].addEventListener('click',()=>{
+        for(let i = 0; i<buttonsList.length; i+=1){
+            if (buttonsList[i].classList.contains('activated')){
+                buttonsList[i].classList.remove('activated');
+            }
+        }
+        buttonsList[x].classList.toggle('activated');
+    });
+}
+
+let trafficSetting=document.getElementsByClassName("activated")[0].textContent;
+
+const chartData= [
+                ['Daily',[1000, 200, 450, 389, 239, 150, 489, 500]],
+                ['Hourly',[500, 850, 2050, 250, 1500, 300, 2100, 1000]],
+                ['Weekly',[384, 291, 150, 989, 138, 500, 643, 123]],
+                ['Monthly',[234, 525, 657, 135, 160, 100, 900, 590]]
+];
+
+function chartLayout(trafficSetting){
+    for(let x=0; x<chartData.length; x+=1){
+        if (chartData[x][0]===trafficSetting){
+            alert(chartData[x][1]);
+        }
+    }
+};
+chartLayout();
+
 //CHART DATA ------------------------------------------------------------
 const lineChart = document.getElementById('lineChart').getContext('2d');
 const trafficChart = new Chart(lineChart, {
@@ -141,6 +172,23 @@ submitButton.addEventListener("click",()=>{
         userField.style.backgroundColor='#b5b5b5';
         messageBox.disabled=true;
         userField.disabled=true;
-    }  
-     
+    }       
 });
+
+function myFunction(){
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+window.onclick =function(event){
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+    }
+}
+
+
